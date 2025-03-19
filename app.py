@@ -8,7 +8,7 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 # Save uploads inside static/uploads so they are accessible by the frontend
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
 app.config['OUTPUT_FOLDER'] = os.path.join('static', 'output')
