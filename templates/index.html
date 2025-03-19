@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hyperspectral Image Classifier</title>
+</head>
+<body>
+  <h1>Upload an Image for Classification</h1>
+  
+  <!-- Display any message -->
+  {% if message %}
+    <p>{{ message }}</p>
+  {% endif %}
+  
+  <!-- Show input and predicted images side by side if available -->
+  {% if input_image or output_image %}
+    <div style="display: flex; gap: 20px;">
+      {% if input_image %}
+        <div>
+          <h3>Input Image:</h3>
+          <img src="{{ url_for('static', filename='uploads/' + input_image) }}" alt="Input Image" width="300">
+        </div>
+      {% endif %}
+      {% if output_image %}
+        <div>
+          <h3>Predicted Image:</h3>
+          <img src="{{ url_for('static', filename='output/' + output_image) }}" alt="Predicted Image" width="300">
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+  
+  <!-- Image upload form -->
+  <form action="{{ url_for('classify') }}" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/*" required>
+    <button type="submit">Upload and Classify</button>
+  </form>
+</body>
+</html>
